@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TesView from '@/views/TesView.vue'
+import TesView from '@/views/SnakeLadderView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
