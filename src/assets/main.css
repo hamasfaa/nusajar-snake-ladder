@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --color-nusajarSecondary: #edecff;
+  --color-nusajarPrimary: #5d5ada;
+  --color-nusajarPrimaryDark: #080720;
+}

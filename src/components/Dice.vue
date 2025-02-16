@@ -1,5 +1,13 @@
 <template>
-  <div></div>
+  <div class="flex flex-col items-center mt-[2vh]">
+    <img :src="diceImage" alt="dice" class="w-[8vw] mb-[1vh]" />
+    <button
+      class="w-[6vw] h-[3.5vh] text-[1.7vh] text-white bg-red-500 rounded mt-[1vh] hover:bg-red-600 transition-colors duration-200"
+      @click="rollDice"
+    >
+      Roll Dice
+    </button>
+  </div>
 </template>
 
 <script>

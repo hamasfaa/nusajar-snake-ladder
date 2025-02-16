@@ -1,31 +1,41 @@
 <template>
   <div>
-    <div class="w-[22vw] h-[60vh] bg-orange-500 overflow-auto">
+    <div
+      class="w-[22vw] h-[60vh] bg-nusajarSecondary overflow-auto rounded-lg shadow-md p-4"
+    >
       <div class="pt-[2vh] text-center">
-        <label class="font-normal text-[2vh] text-violet-500"
-          >Current Player</label
-        >
-        <div class="flex font-bold justify-center">
-          <p class="text-left right-0 w-[15vw] text-[2vh]">JOKO</p>
-          <p class="text-center right-0 pl-[2vw] text-[2vh]">at 1</p>
+        <label class="font-normal text-[2vh] text-nusajarPrimary">
+          Current Player
+        </label>
+        <div class="flex font-bold justify-center mt-2">
+          <p class="text-left w-[15vw] text-[2vh] text-nusajarPrimaryDark">
+            JOKO
+          </p>
+          <p class="text-center pl-[2vw] text-[2vh] text-nusajarPrimaryDark">
+            at 1
+          </p>
         </div>
       </div>
-      <div class="text-center">
-        <label class="font-normal text-[2vh] text-violet-500"
-          >Total Player</label
-        >
-        <div class="flex items-center justify-center h-[3vh]">
+      <div class="text-center mt-4">
+        <label class="font-normal text-[2vh] text-nusajarPrimary">
+          Total Player
+        </label>
+        <div class="flex items-center justify-center h-[3vh] mt-2">
           <!-- player name -->
           <div
-            class="flex text-left items-center pl-[2vh] w-[15vw] h-full bg-amber-50"
+            class="flex text-left items-center pl-[2vh] w-[15vw] h-full bg-nusajarPrimary/[50%] rounded-l hover:bg-nusajarPrimary transition-colors duration-200"
           >
-            <label class="font-medium text-[1.7vh]">tes</label>
+            <label class="font-medium text-[1.7vh] text-nusajarPrimaryDark"
+              >tes</label
+            >
           </div>
           <!-- player label -->
           <div
-            class="flex items-center justify-center w-[5vh] h-full bg-red-100"
+            class="flex items-center justify-center w-[5vh] h-full bg-nusajarPrimary rounded-r hover:bg-nusajarPrimaryDark transition-colors duration-200"
           >
-            <label class="font-medium text-[1.7vh]">tes</label>
+            <label class="font-medium text-[1.7vh] text-nusajarPrimaryDark"
+              >tes</label
+            >
           </div>
         </div>
       </div>
