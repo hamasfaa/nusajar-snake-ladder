@@ -3,7 +3,7 @@
     class="bg-black/[50%] h-[100vh] flex justify-center font-nusajar tracking-widest"
   >
     <div class="pt-[4vh] flex justify-center">
-      <div class="block ml-[2vw] space-y-7">
+      <div class="block mr-[0.5vw] space-y-7">
         <div class="animate-floaty-horizontal">
           <Question />
         </div>

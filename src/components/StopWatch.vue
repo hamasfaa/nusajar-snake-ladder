@@ -2,9 +2,11 @@
   <div class="mr-[2vw] bg-nusajarSecondary rounded-lg shadow-md p-4">
     <div class="text-center">
       <h1 class="font-semibold text-red-500">
-        <span class="text-nusajarPrimaryDark">Waktu Permainan Tersisa: </span>
+        <span class="text-nusajarPrimaryDark text-[2vh]"
+          >Waktu Permainan Tersisa:
+        </span>
       </h1>
-      <p class="mt-[2vh] text-4xl font-bold">{{ formattedTime }}</p>
+      <p class="mt-[2vh] text-[4vh] font-bold">{{ formattedTime }}</p>
     </div>
   </div>
 </template>

@@ -9,7 +9,7 @@
         </h1>
       </div>
       <div class="text-[1.7vh] text-center">
-        <h1 class="font-semibold text-3xl text-nusajarPrimary">
+        <h1 class="font-semibold text-[3vh] text-nusajarPrimary">
           Pertanyaan untuk prabobo
         </h1>
       </div>
@@ -43,7 +43,7 @@
           </button>
         </div>
         <div class="block text-center items-center mt-[1vh]">
-          <label class="block font-semibold text-green-500">
+          <label class="block font-semibold text-green-500 text-[1.7vh]">
             Jawaban kamu benar, kamu bisa mengocok dadu
           </label>
           <button
