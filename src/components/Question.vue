@@ -5,7 +5,8 @@
     >
       <div class="text-[1.7vh] text-center">
         <h1 class="font-semibold text-red-500">
-          <span class="text-nusajarPrimaryDark">Waktu Tersisa: </span>00:30
+          <span class="text-nusajarPrimaryDark">Waktu Tersisa: </span
+          >{{ formattedTime }}
         </h1>
       </div>
       <div class="text-[1.7vh] text-center">
@@ -46,6 +47,13 @@
           >
             Jawaban kamu benar, kamu bisa mengocok dadu
           </label>
+          <label
+            v-else-if="answered"
+            class="block font-semibold text-red-500 text-[1.7vh]"
+          >
+            Jawaban kamu salah, jawaban yang benar adalah
+            <span class="text-green-500"> {{ currentQuestion.answer }}</span>
+          </label>
           <button
             class="w-[6vw] h-[3.5vh] text-[1.7vh] text-white bg-blue-500 rounded hover:bg-blue-600 transition-colors duration-200 mt-[2vh]"
             :disabled="!answered || (correctAnswer && !diceRolled)"
@@ -70,6 +78,8 @@ export default {
   data() {
     return {
       selectedAnswer: null,
+      time: 30,
+      interval: null,
     };
   },
   computed: {
@@ -79,22 +89,49 @@ export default {
       "correctAnswer",
       "diceRolled",
     ]),
+    formattedTime() {
+      const minutes = Math.floor(this.time / 60);
+      const seconds = this.time % 60;
+      return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+        2,
+        "0"
+      )}`;
+    },
   },
   methods: {
     ...mapActions(useQuestionStore, ["generateQuestion", "submitAnswer"]),
     handleSubmitAnswer() {
       if (this.selectedAnswer) {
         this.submitAnswer(this.selectedAnswer);
+        clearInterval(this.interval);
       }
     },
     nextQuestion() {
       this.generateQuestion();
       this.selectedAnswer = null;
+      this.time = 30;
+      this.startTimer;
+    },
+    startTimer() {
+      this.interval = setInterval(() => {
+        if (this.time > 0) {
+          this.time--;
+        } else {
+          clearInterval(this.interval);
+          if (!this.answered) {
+            this.submitAnswer(null);
+          }
+        }
+      }, 1000);
     },
   },
   mounted() {
     const QUESTION_STORE = useQuestionStore();
     QUESTION_STORE.loadQuestions();
+    this.startTimer();
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
   },
 };
 </script>
