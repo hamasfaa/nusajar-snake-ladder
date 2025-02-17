@@ -3,7 +3,9 @@
     <img :src="diceImage" alt="dice" class="w-[8vw] mb-[1vh]" />
     <button
       class="w-[6vw] h-[3.5vh] text-[1.7vh] text-white bg-red-500 rounded mt-[1vh] hover:bg-red-600 transition-colors duration-200"
-      @click="rollDice"
+      @click="handleRollDice"
+      :disabled="!correctAnswer || diceRolled"
+      :class="{ 'cursor-not-allowed': !correctAnswer || diceRolled }"
     >
       Kocok Dadu
     </button>
@@ -11,6 +13,8 @@
 </template>
 
 <script>
+import { useQuestionStore } from "@/stores/questionStore";
+import { mapState, mapActions } from "pinia";
 import Dice1Image from "@/assets/dice-1.png";
 import Dice2Image from "@/assets/dice-2.png";
 import Dice3Image from "@/assets/dice-3.png";
@@ -32,10 +36,15 @@ export default {
       diceImage: Dice1Image,
     };
   },
+  computed: {
+    ...mapState(useQuestionStore, ["correctAnswer", "diceRolled"]),
+  },
   methods: {
-    rollDice() {
+    ...mapActions(useQuestionStore, ["rollDice"]),
+    handleRollDice() {
       const randomIndex = Math.floor(Math.random() * this.diceImages.length);
       this.diceImage = this.diceImages[randomIndex];
+      this.rollDice();
     },
   },
 };

@@ -14,40 +14,45 @@
         </h1>
       </div>
       <div class="w-[16vw] mx-auto">
-        <p class="text-center font-bold text-[2vh]">BERAPA IPK FUFUFAFA ?</p>
+        <p class="text-center font-bold text-[2vh]">
+          {{ currentQuestion.question }}
+        </p>
         <label
+          v-for="(option, index) in currentQuestion.options"
+          :key="index"
           class="block pb-[2vh] text-[1.7vh] hover:text-nusajarPrimaryDark transition-colors duration-200"
-          ><input type="radio" name="mcq" value="a" />4.0</label
         >
-        <label
-          class="block pb-[2vh] text-[1.7vh] hover:text-nusajarPrimaryDark transition-colors duration-200"
-          ><input type="radio" name="mcq" value="b" />2.3</label
-        >
-        <label
-          class="block pb-[2vh] text-[1.7vh] hover:text-nusajarPrimaryDark transition-colors duration-200"
-          ><input type="radio" name="mcq" value="c" />10.0</label
-        >
-        <label
-          class="block pb-[2vh] text-[1.7vh] hover:text-nusajarPrimaryDark transition-colors duration-200"
-          ><input type="radio" name="mcq" value="d" />3.5</label
-        >
-        <label
-          class="block pb-[2vh] text-[1.7vh] hover:text-nusajarPrimaryDark transition-colors duration-200"
-          ><input type="radio" name="mcq" value="e" />3.0</label
-        >
+          <input
+            type="radio"
+            name="mcq"
+            :value="option.key"
+            v-model="selectedAnswer"
+          />{{ option.value }}
+        </label>
         <div class="text-center">
           <button
             class="w-[6vw] h-[3.5vh] text-[1.7vh] text-white bg-green-600 rounded hover:bg-green-700 transition-colors duration-200"
+            @click="handleSubmitAnswer"
+            :disabled="answered"
+            :class="{ 'cursor-not-allowed': answered }"
           >
             JAWAB
           </button>
         </div>
         <div class="block text-center items-center mt-[1vh]">
-          <label class="block font-semibold text-green-500 text-[1.7vh]">
+          <label
+            v-if="correctAnswer"
+            class="block font-semibold text-green-500 text-[1.7vh]"
+          >
             Jawaban kamu benar, kamu bisa mengocok dadu
           </label>
           <button
             class="w-[6vw] h-[3.5vh] text-[1.7vh] text-white bg-blue-500 rounded hover:bg-blue-600 transition-colors duration-200 mt-[2vh]"
+            :disabled="!answered || (correctAnswer && !diceRolled)"
+            :class="{
+              'cursor-not-allowed': !answered || (correctAnswer && !diceRolled),
+            }"
+            @click="nextQuestion"
           >
             Lanjutkan
           </button>
@@ -56,3 +61,40 @@
     </div>
   </div>
 </template>
+
+<script>
+import { useQuestionStore } from "@/stores/questionStore";
+import { mapState, mapActions } from "pinia";
+
+export default {
+  data() {
+    return {
+      selectedAnswer: null,
+    };
+  },
+  computed: {
+    ...mapState(useQuestionStore, [
+      "currentQuestion",
+      "answered",
+      "correctAnswer",
+      "diceRolled",
+    ]),
+  },
+  methods: {
+    ...mapActions(useQuestionStore, ["generateQuestion", "submitAnswer"]),
+    handleSubmitAnswer() {
+      if (this.selectedAnswer) {
+        this.submitAnswer(this.selectedAnswer);
+      }
+    },
+    nextQuestion() {
+      this.generateQuestion();
+      this.selectedAnswer = null;
+    },
+  },
+  mounted() {
+    const QUESTION_STORE = useQuestionStore();
+    QUESTION_STORE.loadQuestions();
+  },
+};
+</script>

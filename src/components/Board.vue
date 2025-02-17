@@ -1,8 +1,8 @@
 <template>
   <div class="block">
     <img :src="SnakeLadder" alt="" class="absolute h-[87vh]" />
-    <table v-if="boardStore.board.length" class="mt-[1vh] ml-[1.5vh]">
-      <tr v-for="(row, rowIndex) in boardStore.board" :key="rowIndex">
+    <table v-if="BOARD_STORE.board.length" class="mt-[1vh] ml-[1.5vh]">
+      <tr v-for="(row, rowIndex) in BOARD_STORE.board" :key="rowIndex">
         <td
           v-for="(cell, cellIndex) in row"
           :key="cellIndex"
@@ -24,14 +24,14 @@ import SnakeLadder from "@/assets/snake-ladder.png";
 
 export default {
   setup() {
-    const boardStore = useBoardStore();
+    const BOARD_STORE = useBoardStore();
 
     onMounted(() => {
-      boardStore.initBoard();
+      BOARD_STORE.initBoard();
     });
 
     return {
-      boardStore,
+      BOARD_STORE,
     };
   },
   data() {

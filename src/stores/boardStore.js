@@ -3,6 +3,12 @@ import { defineStore } from "pinia";
 export const useBoardStore = defineStore("board", {
     state: () => ({
         board: [],
+        snakeLadder: {
+            snakeBite: [48, 67, 74, 79, 83, 96],
+            snakeLand: [28, 24, 52, 59, 19, 76],
+            ladderClimb: [8, 18, 27, 60, 68],
+            ladderLand: [13, 65, 46, 61, 89]
+        }
     }),
     actions: {
         initBoard() {
