@@ -5,7 +5,7 @@
       class="w-[6vw] h-[3.5vh] text-[1.7vh] text-white bg-red-500 rounded mt-[1vh] hover:bg-red-600 transition-colors duration-200"
       @click="rollDice"
     >
-      Roll Dice
+      Kocok Dadu
     </button>
   </div>
 </template>

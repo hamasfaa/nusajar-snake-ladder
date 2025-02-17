@@ -5,7 +5,7 @@
     >
       <div class="pt-[2vh] text-center">
         <label class="font-normal text-[2vh] text-nusajarPrimary">
-          Current Player
+          Posisi Pemain
         </label>
         <div class="flex font-bold justify-center mt-2">
           <p class="text-left w-[15vw] text-[2vh] text-nusajarPrimaryDark">
@@ -18,7 +18,7 @@
       </div>
       <div class="text-center mt-4">
         <label class="font-normal text-[2vh] text-nusajarPrimary">
-          Total Player
+          Peringkat Pemain
         </label>
         <div class="flex items-center justify-center h-[3vh] mt-2">
           <!-- player name -->
