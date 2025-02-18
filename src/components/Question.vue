@@ -11,7 +11,7 @@
       </div>
       <div class="text-[1.7vh] text-center">
         <h1 class="font-semibold text-[3vh] text-nusajarPrimary">
-          Pertanyaan untuk prabobo
+          Pertanyaan untuk {{ currentPlayerName }}
         </h1>
       </div>
       <div class="w-[16vw] mx-auto">
@@ -72,6 +72,7 @@
 
 <script>
 import { useQuestionStore } from "@/stores/questionStore";
+import { useGameStore } from "@/stores/gameStore";
 import { mapState, mapActions } from "pinia";
 
 export default {
@@ -80,6 +81,7 @@ export default {
       selectedAnswer: null,
       time: 30,
       interval: null,
+      GAME_STORE: useGameStore(),
     };
   },
   computed: {
@@ -89,6 +91,10 @@ export default {
       "correctAnswer",
       "diceRolled",
     ]),
+    ...mapState(useGameStore, ["players", "currentPlayer"]),
+    currentPlayerName() {
+      return this.players[this.currentPlayer]?.name || "";
+    },
     formattedTime() {
       const minutes = Math.floor(this.time / 60);
       const seconds = this.time % 60;
@@ -100,6 +106,7 @@ export default {
   },
   methods: {
     ...mapActions(useQuestionStore, ["generateQuestion", "submitAnswer"]),
+    ...mapActions(useGameStore, ["nextPlayer", "rollDice"]),
     handleSubmitAnswer() {
       if (this.selectedAnswer) {
         this.submitAnswer(this.selectedAnswer);
@@ -110,7 +117,8 @@ export default {
       this.generateQuestion();
       this.selectedAnswer = null;
       this.time = 30;
-      this.startTimer;
+      this.startTimer();
+      this.nextPlayer();
     },
     startTimer() {
       this.interval = setInterval(() => {
@@ -128,7 +136,13 @@ export default {
   mounted() {
     const QUESTION_STORE = useQuestionStore();
     QUESTION_STORE.loadQuestions();
-    this.startTimer();
+  },
+  watch: {
+    "GAME_STORE.start"(newVal) {
+      if (newVal) {
+        this.startTimer();
+      }
+    },
   },
   beforeDestroy() {
     clearInterval(this.interval);

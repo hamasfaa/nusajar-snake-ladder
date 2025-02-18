@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div
-      v-if="add"
+      v-if="!GAME_STORE.start"
       class="fixed inset-0 flex items-center justify-center bg-black/20 z-50 font-nusajar tracking-widest"
     >
       <div
@@ -63,9 +63,10 @@ import { Teleport } from "vue";
 export default {
   components: { Teleport },
   data() {
+    const GAME_STORE = useGameStore();
     return {
       newPlayer: "",
-      add: true,
+      GAME_STORE,
     };
   },
   computed: {
@@ -83,7 +84,8 @@ export default {
       }
     },
     startGame() {
-      this.add = false;
+      const GAME_STORE = useGameStore();
+      GAME_STORE.start = true;
     },
   },
 };

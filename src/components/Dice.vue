@@ -14,6 +14,7 @@
 
 <script>
 import { useQuestionStore } from "@/stores/questionStore";
+import { useGameStore } from "@/stores/gameStore";
 import { mapState, mapActions } from "pinia";
 import Dice1Image from "@/assets/dice-1.png";
 import Dice2Image from "@/assets/dice-2.png";
@@ -40,11 +41,13 @@ export default {
     ...mapState(useQuestionStore, ["correctAnswer", "diceRolled"]),
   },
   methods: {
-    ...mapActions(useQuestionStore, ["rollDice"]),
+    ...mapActions(useQuestionStore, ["rollDiceButton"]),
+    ...mapActions(useGameStore, ["rollDice"]),
     handleRollDice() {
       const randomIndex = Math.floor(Math.random() * this.diceImages.length);
       this.diceImage = this.diceImages[randomIndex];
-      this.rollDice();
+      this.rollDiceButton();
+      this.rollDice(randomIndex);
     },
   },
 };

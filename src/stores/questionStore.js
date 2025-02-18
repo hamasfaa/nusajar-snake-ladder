@@ -42,7 +42,7 @@ export const useQuestionStore = defineStore("question", {
                 this.correctAnswer = true;
             }
         },
-        rollDice() {
+        rollDiceButton() {
             this.diceRolled = true;
         }
     },

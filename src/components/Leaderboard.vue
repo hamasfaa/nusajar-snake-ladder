@@ -7,12 +7,16 @@
         <label class="font-normal text-[2vh] text-nusajarPrimary">
           Posisi Pemain
         </label>
-        <div class="flex font-bold justify-center mt-2">
+        <div
+          v-for="player in players"
+          :key="player.name"
+          class="flex font-bold justify-center mt-2"
+        >
           <p class="text-left w-[15vw] text-[2vh] text-nusajarPrimaryDark">
-            JOKO
+            {{ player.name }}
           </p>
           <p class="text-center pl-[2vw] text-[2vh] text-nusajarPrimaryDark">
-            at 1
+            at {{ player.position }}
           </p>
         </div>
       </div>
@@ -20,25 +24,36 @@
         <label class="font-normal text-[2vh] text-nusajarPrimary">
           Peringkat Pemain
         </label>
-        <div class="flex items-center justify-center h-[3vh] mt-2">
-          <!-- player name -->
+        <div class="flex flex-col items-center justify-center mt-2">
           <div
-            class="flex text-left items-center pl-[2vh] w-[15vw] h-full bg-nusajarPrimary/[50%] rounded-l hover:bg-nusajarPrimary transition-colors duration-200"
+            v-for="(player, index) in sortedPlayers"
+            :key="player.name"
+            class="flex items-center justify-between w-full bg-nusajarPrimary/[50%] rounded hover:bg-nusajarPrimary transition-colors duration-200 py-2 px-4 mb-2"
           >
-            <label class="font-medium text-[1.7vh] text-nusajarPrimaryDark"
-              >tes</label
-            >
-          </div>
-          <!-- player label -->
-          <div
-            class="flex items-center justify-center w-[5vh] h-full bg-nusajarPrimary rounded-r hover:bg-nusajarPrimaryDark transition-colors duration-200"
-          >
-            <label class="font-medium text-[1.7vh] text-nusajarPrimaryDark"
-              >tes</label
-            >
+            <label class="font-medium text-[1.7vh] text-nusajarPrimaryDark">
+              {{ player.name }}
+            </label>
+            <label class="font-medium text-[1.7vh] text-nusajarPrimaryDark">
+              {{ index + 1 }}
+            </label>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { useGameStore } from "@/stores/gameStore";
+export default {
+  computed: {
+    players() {
+      const GAME_STORE = useGameStore();
+      return GAME_STORE.players;
+    },
+    sortedPlayers() {
+      return [...this.players].sort((a, b) => b.position - a.position);
+    },
+  },
+};
+</script>

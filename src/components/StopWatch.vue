@@ -2,8 +2,8 @@
   <div class="mr-[2vw] bg-nusajarSecondary rounded-lg shadow-md p-4">
     <div class="text-center">
       <h1 class="font-semibold text-red-500">
-        <span class="text-nusajarPrimaryDark text-[2vh]"
-          >Waktu Permainan Tersisa:
+        <span class="text-nusajarPrimaryDark text-[2vh]">
+          Waktu Permainan Tersisa:
         </span>
       </h1>
       <p class="mt-[2vh] text-[4vh] font-bold">{{ formattedTime }}</p>
@@ -12,11 +12,14 @@
 </template>
 
 <script>
+import { useGameStore } from "@/stores/gameStore";
+
 export default {
   data() {
     return {
       time: 300,
       interval: null,
+      GAME_STORE: useGameStore(),
     };
   },
   computed: {
@@ -29,8 +32,12 @@ export default {
       )}`;
     },
   },
-  mounted() {
-    this.startTimer();
+  watch: {
+    "GAME_STORE.start"(newVal) {
+      if (newVal) {
+        this.startTimer();
+      }
+    },
   },
   beforeDestroy() {
     clearInterval(this.interval);

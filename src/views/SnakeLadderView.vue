@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="absolute top-4 right-4 z-10 flex gap-4 items-center z-100">
+  <div class="absolute top-4 right-4 flex gap-4 items-center z-100">
     <button
       @click="toggleFullScreen"
       class="p-2 rounded shadow text-3xl bg-white/[50%]"
