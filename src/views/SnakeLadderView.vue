@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="absolute top-4 right-4 z-10 flex gap-4 items-center">
+  <div class="absolute top-4 right-4 z-10 flex gap-4 items-center z-100">
     <button
       @click="toggleFullScreen"
       class="p-2 rounded shadow text-3xl bg-white/[50%]"
@@ -28,6 +28,7 @@
       </span>
     </button>
   </div>
+  <AddPlayer />
 </template>
 
 <script>
@@ -36,6 +37,7 @@ import Dice from "@/components/Dice.vue";
 import Question from "@/components/Question.vue";
 import Board from "@/components/Board.vue";
 import StopWatch from "@/components/StopWatch.vue";
+import AddPlayer from "@/components/AddPlayer.vue";
 
 export default {
   components: {
@@ -44,6 +46,7 @@ export default {
     Question,
     Board,
     StopWatch,
+    AddPlayer,
   },
   data() {
     return {
