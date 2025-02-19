@@ -41,7 +41,7 @@ export const useGameStore = defineStore("game", {
                 this.winner = this.players.reduce((max, player) =>
                     player.position > max.position ? player : max
                 );
-                this.resetGame();
+                // console.log(this.winner);
             }
         },
         resetGame() {

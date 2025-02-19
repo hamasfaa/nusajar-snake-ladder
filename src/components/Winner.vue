@@ -44,12 +44,7 @@ export default {
   },
   methods: {
     restartGame() {
-      this.GAME_STORE.start = false;
-      this.GAME_STORE.winner = null;
-      this.GAME_STORE.players.forEach((player) => {
-        player.position = 1;
-      });
-      this.GAME_STORE.currentPlayer = 0;
+      this.GAME_STORE.resetGame();
     },
   },
 };
