@@ -29,6 +29,7 @@
     </button>
   </div>
   <AddPlayer />
+  <Winner />
 </template>
 
 <script>
@@ -38,6 +39,7 @@ import Question from "@/components/Question.vue";
 import Board from "@/components/Board.vue";
 import StopWatch from "@/components/StopWatch.vue";
 import AddPlayer from "@/components/AddPlayer.vue";
+import Winner from "@/components/Winner.vue";
 
 export default {
   components: {
@@ -47,6 +49,7 @@ export default {
     Board,
     StopWatch,
     AddPlayer,
+    Winner,
   },
   data() {
     return {

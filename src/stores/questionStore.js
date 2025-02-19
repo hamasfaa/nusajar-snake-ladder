@@ -44,6 +44,13 @@ export const useQuestionStore = defineStore("question", {
         },
         rollDiceButton() {
             this.diceRolled = true;
+        },
+        resetQuestion() {
+            this.currentQuestionIndex = 0;
+            this.currentQuestion = this.questions[this.currentQuestionIndex];
+            this.answered = false;
+            this.correctAnswer = false;
+            this.diceRolled = false
         }
     },
 });

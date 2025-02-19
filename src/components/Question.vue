@@ -114,11 +114,20 @@ export default {
       }
     },
     nextQuestion() {
-      this.generateQuestion();
-      this.selectedAnswer = null;
-      this.time = 30;
-      this.startTimer();
-      this.nextPlayer();
+      const QUESTION_STORE = useQuestionStore();
+      if (
+        QUESTION_STORE.currentQuestionIndex <
+        QUESTION_STORE.questions.length - 1
+      ) {
+        this.generateQuestion();
+        this.selectedAnswer = null;
+        this.time = 30;
+        this.startTimer();
+        this.nextPlayer();
+      } else {
+        this.GAME_STORE.determineWInner;
+        QUESTION_STORE.resetQuestion();
+      }
     },
     startTimer() {
       this.interval = setInterval(() => {
@@ -132,6 +141,10 @@ export default {
         }
       }, 1000);
     },
+    resetTimer() {
+      clearInterval(this.interval);
+      this.time = 30;
+    },
   },
   mounted() {
     const QUESTION_STORE = useQuestionStore();
@@ -141,6 +154,8 @@ export default {
     "GAME_STORE.start"(newVal) {
       if (newVal) {
         this.startTimer();
+      } else {
+        this.resetTimer();
       }
     },
   },

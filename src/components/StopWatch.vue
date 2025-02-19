@@ -36,6 +36,8 @@ export default {
     "GAME_STORE.start"(newVal) {
       if (newVal) {
         this.startTimer();
+      } else {
+        this.resetTimer();
       }
     },
   },
@@ -49,8 +51,13 @@ export default {
           this.time--;
         } else {
           clearInterval(this.interval);
+          this.GAME_STORE.determineWInner();
         }
       }, 1000);
+    },
+    resetTimer() {
+      clearInterval(this.interval);
+      this.time = 300;
     },
   },
 };

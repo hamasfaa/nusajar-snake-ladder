@@ -34,13 +34,19 @@
           </label>
           <div class="mt-2">
             <div
-              v-for="player in players"
+              v-for="(player, index) in players"
               :key="player.name"
               class="flex items-center justify-between bg-nusajarPrimary/[50%] rounded hover:bg-nusajarPrimary transition-colors duration-200 py-2 px-4 mb-2"
             >
               <label class="font-medium text-[1.7vh] text-nusajarPrimaryDark">
                 {{ player.name }}
               </label>
+              <button
+                @click="removePlayer(index)"
+                class="text-red-600 px-2 py-1 rounded cursor-pointer"
+              >
+                X
+              </button>
             </div>
           </div>
           <button
@@ -86,6 +92,10 @@ export default {
     startGame() {
       const GAME_STORE = useGameStore();
       GAME_STORE.start = true;
+    },
+    removePlayer(index) {
+      const GAME_STORE = useGameStore();
+      GAME_STORE.removePlayer(index);
     },
   },
 };
