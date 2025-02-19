@@ -125,7 +125,7 @@ export default {
         this.startTimer();
         this.nextPlayer();
       } else {
-        this.GAME_STORE.determineWInner;
+        this.GAME_STORE.determineWinner();
         QUESTION_STORE.resetQuestion();
       }
     },
