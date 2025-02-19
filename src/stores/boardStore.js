@@ -47,6 +47,13 @@ export const useBoardStore = defineStore("board", {
                 tableData.push(row2);
             }
             this.board = tableData;
+        },
+        checkPosition(position) {
+            const snakeIndex = this.snakeLadder.snakeBite.indexOf(position);
+            if (snakeIndex !== -1) return this.snakeLadder.snakeLand[snakeIndex];
+            const ladderIndex = this.snakeLadder.ladderClimb.indexOf(position);
+            if (ladderIndex !== -1) return this.snakeLadder.ladderLand[ladderIndex];
+            return position;
         }
     },
 });

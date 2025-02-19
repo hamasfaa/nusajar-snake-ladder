@@ -30,6 +30,7 @@
   </div>
   <AddPlayer />
   <Winner />
+  <Regulation />
 </template>
 
 <script>
@@ -40,6 +41,7 @@ import Board from "@/components/Board.vue";
 import StopWatch from "@/components/StopWatch.vue";
 import AddPlayer from "@/components/AddPlayer.vue";
 import Winner from "@/components/Winner.vue";
+import Regulation from "@/components/Regulation.vue";
 
 export default {
   components: {
@@ -50,6 +52,7 @@ export default {
     StopWatch,
     AddPlayer,
     Winner,
+    Regulation,
   },
   data() {
     return {
