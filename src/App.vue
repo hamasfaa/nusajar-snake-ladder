@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from "vue-router";
 import { onMounted } from "vue";
 import { useQuestionStore } from "@/stores/questionStore";
+import { SpeedInsights } from "@vercel/speed-insights/vue";
 
 const QUESTION_STORE = useQuestionStore();
 
@@ -12,4 +13,5 @@ onMounted(() => {
 
 <template>
   <RouterView />
+  <SpeedInsights />
 </template>
